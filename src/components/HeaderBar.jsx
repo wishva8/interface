@@ -30,12 +30,12 @@ function HeaderBar(){
 
             <div>
                 
-            <nav className="navbar navbar-expand-lg bg-success container-fluid navtext">
+            <nav className="navbar navbar-expand-lg bg-success container-fluid" >
                 
 
                 
                 
-                <ul className="navbar-nav ">
+                <ul className="navbar-nav" >
                     <li className="nav-item"><a className="nav-link" href="#"><span className="navbar-brand" >Home</span></a></li>
                     <li className="nav-item"><a className="nav-link" href="#"><span className="navbar-brand">Store</span></a></li>
                     <li className="nav-item"><a className="nav-link" href="#"><span className="navbar-brand">Service</span></a></li>

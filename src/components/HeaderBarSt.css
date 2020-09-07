@@ -1,6 +1,10 @@
 .page{
 background-color: #dee1ec;
 }
-.navtext{
+a{
     color: white;
+   
+}
+a:hover{
+    color:#dee1ec;
 }
