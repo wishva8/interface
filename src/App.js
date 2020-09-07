@@ -1,26 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import HeaderBar from './components/HeaderBar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFilePrescription } from '@fortawesome/free-solid-svg-icons'
+import { faFileMedical } from '@fortawesome/free-solid-svg-icons'
+import { faUsers } from '@fortawesome/free-solid-svg-icons'
+
+
 
 function App() {
     return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <div>
+            <HeaderBar/>
+            <div className="border border-success rounded-pill row mt-5" align="center" width="100%">
+                
+                <div className="col-sm">
+                    <FontAwesomeIcon icon={faFilePrescription} size="5x"/>
+                    <h3>Prescriptions</h3>
+                    <h3>00</h3>
+                    {/* counterVariable */}
+                </div>
+                <div className="col-sm">
+                    <FontAwesomeIcon icon={faFileMedical} size="5x"/>
+                    <h3>Orders</h3>
+                    <h3>00</h3>
+                    {/* counterVariable */}
+                </div>
+                <div className="col-sm">
+                    <FontAwesomeIcon icon={faUsers} size="5x"/>
+                    <h3>Customers</h3>
+                    <h3>00</h3>
+                    {/* counterVariable */}
+                </div>
+            </div>
+
+        </div>
+    );
 }
 
 export default App;
