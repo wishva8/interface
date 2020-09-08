@@ -9,7 +9,7 @@ function HeaderBar() {
     <div className="container-fluid page">
       <div className="row">
         <div className="col-sm">
-          <img src="logo.png" alt="logo" className="rounded" width="250"></img>
+          <img src="logo.png" alt="logo" className="rounded" width="250"/>
         </div>
 
         <div className="col-sm mt-4" align="center">
@@ -26,10 +26,20 @@ function HeaderBar() {
 
         <div className="col-sm mt-4" align="right">
           <a href="#">
-            <FontAwesomeIcon icon={faUser} size="2x" className="mr-5" color="black"/>
+            <FontAwesomeIcon
+              icon={faUser}
+              size="2x"
+              className="mr-5"
+              color="black"
+            />
           </a>
           <a href="#">
-            <FontAwesomeIcon icon={faCartPlus} size="2x" className="mr-4"  color="black"/>
+            <FontAwesomeIcon
+              icon={faCartPlus}
+              size="2x"
+              className="mr-4"
+              color="black"
+            />
           </a>
         </div>
       </div>
@@ -62,7 +72,6 @@ function HeaderBar() {
                 <span className="navbar-brand">About</span>
               </a>
             </li>
-            
           </ul>
         </nav>
       </div>
