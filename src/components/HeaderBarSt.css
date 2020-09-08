@@ -4,11 +4,16 @@
   padding-right: 0px !important;
 }
 
+.row{
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+
 .nav-bar-item {
   text-decoration: none;
   color: white;
 }
 
-a:hover {
+.nav-bar-item:hover {
   color: #dee1ec;
 }

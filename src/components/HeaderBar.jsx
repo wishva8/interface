@@ -1,12 +1,12 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import "./HeaderBarSt.css";
 
 function HeaderBar() {
   return (
-    <div className="container-fulid page">
+    <div className="container-fluid page">
       <div className="row">
         <div className="col-sm">
           <img src="logo.png" alt="logo" className="rounded" width="250"></img>
@@ -25,8 +25,12 @@ function HeaderBar() {
         </div>
 
         <div className="col-sm mt-4" align="right">
-          <FontAwesomeIcon icon={faUser} size="2x" className="mr-5" />
-          <FontAwesomeIcon icon={faShoppingCart} size="2x" className="mr-4" />
+          <a href="#">
+            <FontAwesomeIcon icon={faUser} size="2x" className="mr-5" color="black"/>
+          </a>
+          <a href="#">
+            <FontAwesomeIcon icon={faCartPlus} size="2x" className="mr-4"  color="black"/>
+          </a>
         </div>
       </div>
 
