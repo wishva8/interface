@@ -62,11 +62,7 @@ function HeaderBar() {
                 <span className="navbar-brand">About</span>
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link nav-bar-item" href="#">
-                <span className="navbar-brand ">Login</span>
-              </a>
-            </li>
+            
           </ul>
         </nav>
       </div>
