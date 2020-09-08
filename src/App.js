@@ -10,7 +10,7 @@ import { faUsers } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
     return (
-        <div className="container-fluid">
+        <div className="">
             <HeaderBar/>
             <div className="border border-success rounded-pill row mt-5 ml-5 mr-5" align="center" width="100%">
                 
