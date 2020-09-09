@@ -1,29 +1,21 @@
 import React from "react";
-import "./createToken.css";
+// import "./createToken.css";
 
-function CreateDeilivaryToken() {
+function UpdateDelivaryToken() {
   return (
     <div>
       <h3 align="center" className="mt-5">
-        Manage Delivary Token
+        Make Changers In Delivary Token
       </h3>
       <div className="row">
         <div className="border border-success col-sm rounded m-5 overflow-auto column">
           <h5 align="center" className="m-2 mb-4">
-            Order List
+            Token List
           </h5>
           <div className="row mb-3">
             Order Number : 001
             <br />
-            Customer Name : wishva perera
-            <br />
-            Mobile Name : 0777123456
-            <br />
-            address : 225/B, Malabe, Colombo
-            <br />
-          </div>
-          <div className="row mb-3">
-            Order Number : 001
+            Token Number : 001
             <br />
             Customer Name : wishva perera
             <br />
@@ -32,8 +24,11 @@ function CreateDeilivaryToken() {
             address : 225/B, Malabe, Colombo
             <br />
           </div>
+
           <div className="row mb-3">
             Order Number : 002
+            <br />
+            Token Number : 002
             <br />
             Customer Name : wishva perera
             <br />
@@ -45,6 +40,8 @@ function CreateDeilivaryToken() {
           <div className="row mb-3">
             Order Number : 003
             <br />
+            Token Number : 003
+            <br />
             Customer Name : wishva perera
             <br />
             Mobile Name : 0777123456
@@ -54,6 +51,8 @@ function CreateDeilivaryToken() {
           </div>
           <div className="row mb-3">
             Order Number : 004
+            <br />
+            Token Number : 004
             <br />
             Customer Name : wishva perera
             <br />
@@ -65,6 +64,8 @@ function CreateDeilivaryToken() {
           <div className="row mb-3">
             Order Number : 005
             <br />
+            Token Number : 005
+            <br />
             Customer Name : wishva perera
             <br />
             Mobile Name : 0777123456
@@ -74,6 +75,8 @@ function CreateDeilivaryToken() {
           </div>
           <div className="row mb-3">
             Order Number : 006
+            <br />
+            Token Number : 006
             <br />
             Customer Name : wishva perera
             <br />
@@ -85,7 +88,7 @@ function CreateDeilivaryToken() {
         </div>
         <div className="border border-success col-sm rounded m-5 column">
           <h5 align="center" className="m-2 mb-4">
-            Create Delivaly Token
+            Update Delivaly Token
           </h5>
           <form>
             <div class="form-group row">
@@ -108,7 +111,7 @@ function CreateDeilivaryToken() {
               </label>
               <div class="col-sm">
                 <select name="Orders" className="col-" id="Orders">
-                  <option value="none">Select</option>
+                  <option value="none">001</option>
                   <option value="option1">option1</option>
                   <option value="option2">option2</option>
                   <option value="option3">option3</option>
@@ -134,7 +137,7 @@ function CreateDeilivaryToken() {
                 Customer Name :
               </label>
               <div class="col-sm">
-                <input type="text" class="form-control" id="CusName" />
+                <input type="text" class="form-control" id="CusName" value="Wishva Perera"/>
               </div>
             </div>
 
@@ -143,7 +146,7 @@ function CreateDeilivaryToken() {
                 Mobile Number :
               </label>
               <div class="col-sm">
-                <input type="tel" class="form-control" id="tel" />
+                <input type="tel" class="form-control" id="tel" value="0771234567"/>
               </div>
             </div>
 
@@ -152,7 +155,7 @@ function CreateDeilivaryToken() {
                 Address :
               </label>
               <div class="col-sm">
-                <textarea class="form-control" id="address" />
+                <textarea class="form-control" id="address">225/B, Malabe, Colombo</textarea>
               </div>
             </div>
 
@@ -161,7 +164,7 @@ function CreateDeilivaryToken() {
                 Item Description :
               </label>
               <div class="col-sm">
-                <textarea class="form-control" id="itemDesc" />
+                <textarea class="form-control" id="itemDesc">Keep dry</textarea>
               </div>
             </div>
 
@@ -186,13 +189,10 @@ function CreateDeilivaryToken() {
                 <button className="btn btn-outline-success">Cancel</button>
               </div>
               <div className="">
-                <button className="btn btn-outline-success ml-2">Save</button>
-              </div>
-              <div className="">
                 <input
                   type="submit"
-                  className="btn btn-success ml-2"
-                  value="Save & Print"
+                  className="btn btn-success ml-4"
+                  value="Save Changers"
                 />
               </div>
             </div>
@@ -203,4 +203,4 @@ function CreateDeilivaryToken() {
   );
 }
 
-export default CreateDeilivaryToken;
+export default UpdateDelivaryToken;
