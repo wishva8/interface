@@ -1,10 +1,11 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import UpdateDelivaryToken from 'C:/Users/vibus/OneDrive/Desktop/ITPproject/interface/src/components/pages/UpdateDelivaryToken/UpdateDelivaryToken'
+import {Link} from 'react-router-dom'
 function DelivaryTokenDetails() {
   return (
 
@@ -32,11 +33,11 @@ function DelivaryTokenDetails() {
           </div>
           <div align="right">
             <a href="#">
-              <FontAwesomeIcon icon={faEye} color="black" className="mr-2" onClick="<UpdateDelivaryToken/>"/>
+              <FontAwesomeIcon icon={faEye} color="black" className="mr-2" />
             </a>
-            <a href="#">
+            <Link to="/UpdateDelivaryToken">
               <FontAwesomeIcon icon={faEdit} color="black" className="mr-2" />
-            </a>
+              </Link>
             <a href="#">
               <FontAwesomeIcon
                 icon={faTrash}
@@ -101,9 +102,9 @@ function DelivaryTokenDetails() {
             <a href="#">
               <FontAwesomeIcon icon={faEye} color="black" className="mr-2" />
             </a>
-            <a href="#">
+            <Link to="/UpdateDelivaryToken">
               <FontAwesomeIcon icon={faEdit} color="black" className="mr-2" />
-            </a>
+              </Link>
             <a href="#">
               <FontAwesomeIcon
                 icon={faTrash}
@@ -168,9 +169,9 @@ function DelivaryTokenDetails() {
             <a href="#">
               <FontAwesomeIcon icon={faEye} color="black" className="mr-2" />
             </a>
-            <a href="#">
+            <Link to="/UpdateDelivaryToken">
               <FontAwesomeIcon icon={faEdit} color="black" className="mr-2" />
-            </a>
+              </Link>
             <a href="#">
               <FontAwesomeIcon
                 icon={faTrash}
@@ -235,9 +236,9 @@ function DelivaryTokenDetails() {
             <a href="#">
               <FontAwesomeIcon icon={faEye} color="black" className="mr-2" />
             </a>
-            <a href="#">
+            <Link to="/UpdateDelivaryToken">
               <FontAwesomeIcon icon={faEdit} color="black" className="mr-2" />
-            </a>
+              </Link>
             <a href="#">
               <FontAwesomeIcon
                 icon={faTrash}

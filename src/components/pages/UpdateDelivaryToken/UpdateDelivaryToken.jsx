@@ -137,7 +137,12 @@ function UpdateDelivaryToken() {
                 Customer Name :
               </label>
               <div class="col-sm">
-                <input type="text" class="form-control" id="CusName" value="Wishva Perera"/>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="CusName"
+                  value="Wishva Perera"
+                />
               </div>
             </div>
 
@@ -146,7 +151,12 @@ function UpdateDelivaryToken() {
                 Mobile Number :
               </label>
               <div class="col-sm">
-                <input type="tel" class="form-control" id="tel" value="0771234567"/>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="tel"
+                  value="0771234567"
+                />
               </div>
             </div>
 
@@ -155,7 +165,9 @@ function UpdateDelivaryToken() {
                 Address :
               </label>
               <div class="col-sm">
-                <textarea class="form-control" id="address">225/B, Malabe, Colombo</textarea>
+                <textarea class="form-control" id="address">
+                  225/B, Malabe, Colombo
+                </textarea>
               </div>
             </div>
 
@@ -164,7 +176,9 @@ function UpdateDelivaryToken() {
                 Item Description :
               </label>
               <div class="col-sm">
-                <textarea class="form-control" id="itemDesc">Keep dry</textarea>
+                <textarea class="form-control" id="itemDesc">
+                  Keep dry
+                </textarea>
               </div>
             </div>
 

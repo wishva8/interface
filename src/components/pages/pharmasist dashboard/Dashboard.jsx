@@ -4,6 +4,7 @@ import { faFilePrescription } from "@fortawesome/free-solid-svg-icons";
 import { faFileMedical } from "@fortawesome/free-solid-svg-icons";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import "./PharmasistDashboard.css";
+import { Link } from "react-router-dom"; 
 
 function Dashboard() {
   return (
@@ -40,36 +41,44 @@ function Dashboard() {
           {/* <img src="pharmacist-1.jpg" alt="logo" className="rounded" /> */}
           <div className="col-10 pl-10" align="left">
             <div className="row-sm mb-4">
-              <button
-                className="btn btn-outline-success"
-                onClick="location.replace('#')"
-              >
-                Create Delivary Token
-              </button>
+              <Link to="/CreateDeilivaryToken">
+                <button
+                  className="btn btn-outline-success"
+                  onClick="location.replace('#')"
+                >
+                  Create Delivary Token
+                </button>
+              </Link>
             </div>
             <div className="row-sm mb-4">
-              <button
-                className="btn btn-outline-success"
-                onClick="location.replace('#')"
-              >
-                View Delivary Token
-              </button>
+              <Link to="/DelivaryTokenDetails">
+                <button
+                  className="btn btn-outline-success"
+                  onClick="location.replace('#')"
+                >
+                  View Delivary Token
+                </button>
+              </Link>
             </div>
             <div className="row-sm mb-4">
-              <button
-                className="btn btn-outline-success"
-                onClick="location.replace('#')"
-              >
-                Create Order
-              </button>
+              <Link>
+                <button
+                  className="btn btn-outline-success"
+                  onClick="location.replace('#')"
+                >
+                  Create Order
+                </button>
+              </Link>
             </div>
             <div className="row-sm mb-4">
-              <button
-                className="btn btn-outline-success"
-                onClick="location.replace('#')"
-              >
-                Genarate Customer Progress Report
-              </button>
+              <Link>
+                <button
+                  className="btn btn-outline-success"
+                  onClick="location.replace('#')"
+                >
+                  Genarate Customer Progress Report
+                </button>
+              </Link>
             </div>
           </div>
         </div>
