@@ -5,6 +5,8 @@ import Dashboard from "./components/pages/pharmasist dashboard/Dashboard";
 import CreateDeilivaryToken from "./components/pages/Delivary Token/CreateDelivaryToken";
 import DelivaryTokenDetails from "./components/pages/DelivaryTokenDetails/DelivaryTokenDetails";
 import UpdateDelivaryToken from "./components/pages/UpdateDelivaryToken/UpdateDelivaryToken";
+import Footer from "./components/Footer"
+import Login from './components/pages/Login/Login'
 
 function App() {
   return (
@@ -21,10 +23,14 @@ function App() {
           <Route path="/UpdateDelivaryToken">
             <UpdateDelivaryToken />
           </Route>
-          <Route path="/">
+          <Route path="/DashBoard">
             <Dashboard />
           </Route>
+          <Route path="/">
+            <Login />
+          </Route>
         </Switch>
+        <Footer/>
       </BrowserRouter>
     </div>
   );

@@ -1,0 +1,33 @@
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: URL("loginImg.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+
+.bgImg{
+ padding: 0px !important;
+}
+
+/*.bgDesign{
+ width: 500px !important;
+ height: 900px !important;
+}*/
+
+.logName{
+  text-align: center;
+}
+
+.resize-container{
+ height: 425px !important;
+}
+
+.container{
+    width: 500px !important;
+    border-radius: 10px !important;
+    background-color: #DEE1EC !important;
+}

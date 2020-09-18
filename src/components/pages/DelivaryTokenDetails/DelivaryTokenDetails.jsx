@@ -10,6 +10,7 @@ function DelivaryTokenDetails() {
   return (
 
     <div>
+      <h2 className="mt-5" align="center">Delivary Token Details</h2>
       <div className="row">
         <div className="col-sm border border-success rounded m-5">
           <div align="center">
