@@ -1,7 +1,11 @@
 import React from "react";
+
 // import "./createToken.css";
 
+
 function UpdateDelivaryToken() {
+  
+
   return (
     <div>
       <h3 align="center" className="mt-5">
@@ -217,4 +221,4 @@ function UpdateDelivaryToken() {
   );
 }
 
-export default UpdateDelivaryToken;
+export default (UpdateDelivaryToken);

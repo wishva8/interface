@@ -1,16 +1,27 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import { store } from "../action/store";
+import { connect } from "react-redux";
+import * as action from "../action/deliveryToken";
 // import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import UpdateDelivaryToken from 'C:/Users/vibus/OneDrive/Desktop/ITPproject/interface/src/components/pages/UpdateDelivaryToken/UpdateDelivaryToken'
-import {Link} from 'react-router-dom'
-function DelivaryTokenDetails() {
-  return (
+import UpdateDelivaryToken from "C:/Users/vibus/OneDrive/Desktop/ITPproject/interface/src/components/pages/UpdateDelivaryToken/UpdateDelivaryToken";
+import { Link } from "react-router-dom";
 
+
+
+const DelivaryTokenDetails=(props) =>{
+  useEffect(() => {
+    this.props.fetchAllToken();
+  }, []);
+  return (
     <div>
-      <h2 className="mt-5" align="center">Delivary Token Details</h2>
+      <h2 className="mt-5" align="center">
+        Delivary Token Details
+      </h2>
       <div className="row">
         <div className="col-sm border border-success rounded m-5">
           <div align="center">
@@ -38,7 +49,7 @@ function DelivaryTokenDetails() {
             </a>
             <Link to="/UpdateDelivaryToken">
               <FontAwesomeIcon icon={faEdit} color="black" className="mr-2" />
-              </Link>
+            </Link>
             <a href="#">
               <FontAwesomeIcon
                 icon={faTrash}
@@ -46,36 +57,36 @@ function DelivaryTokenDetails() {
                 className="mr-2"
                 data-toggle="modal"
                 data-target="#myModal1"
-              /></a>
+              />
+            </a>
 
-              <div class="modal fade" id="myModal1" role="dialog">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 className="modal-title">Are you sure?</h4>
-                      <button type="button" class="close" data-dismiss="modal">
-                        &times;
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p align="left">Do you want delete Delivary Token.</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-default"
-                        data-dismiss="modal"
-                      >
-                        Close
-                      </button>
-                      <button type="button" class="btn btn-danger">
-                        Delete
-                      </button>
-                    </div>
+            <div class="modal fade" id="myModal1" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 className="modal-title">Are you sure?</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                      &times;
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p align="left">Do you want delete Delivary Token.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                      Delete
+                    </button>
                   </div>
                 </div>
               </div>
-            
+            </div>
           </div>
         </div>
 
@@ -105,7 +116,7 @@ function DelivaryTokenDetails() {
             </a>
             <Link to="/UpdateDelivaryToken">
               <FontAwesomeIcon icon={faEdit} color="black" className="mr-2" />
-              </Link>
+            </Link>
             <a href="#">
               <FontAwesomeIcon
                 icon={faTrash}
@@ -113,36 +124,36 @@ function DelivaryTokenDetails() {
                 className="mr-2"
                 data-toggle="modal"
                 data-target="#myModal2"
-              /></a>
+              />
+            </a>
 
-              <div class="modal fade" id="myModal2" role="dialog">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 className="modal-title">Are you sure?</h4>
-                      <button type="button" class="close" data-dismiss="modal">
-                        &times;
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p align="left">Do you want delete Delivary Token.</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-default"
-                        data-dismiss="modal"
-                      >
-                        Close
-                      </button>
-                      <button type="button" class="btn btn-danger">
-                        Delete
-                      </button>
-                    </div>
+            <div class="modal fade" id="myModal2" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 className="modal-title">Are you sure?</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                      &times;
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p align="left">Do you want delete Delivary Token.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                      Delete
+                    </button>
                   </div>
                 </div>
               </div>
-            
+            </div>
           </div>
         </div>
 
@@ -172,7 +183,7 @@ function DelivaryTokenDetails() {
             </a>
             <Link to="/UpdateDelivaryToken">
               <FontAwesomeIcon icon={faEdit} color="black" className="mr-2" />
-              </Link>
+            </Link>
             <a href="#">
               <FontAwesomeIcon
                 icon={faTrash}
@@ -180,36 +191,36 @@ function DelivaryTokenDetails() {
                 className="mr-2"
                 data-toggle="modal"
                 data-target="#myModal3"
-              /></a>
+              />
+            </a>
 
-              <div class="modal fade" id="myModal3" role="dialog">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 className="modal-title">Are you sure?</h4>
-                      <button type="button" class="close" data-dismiss="modal">
-                        &times;
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p align="left">Do you want delete Delivary Token.</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-default"
-                        data-dismiss="modal"
-                      >
-                        Close
-                      </button>
-                      <button type="button" class="btn btn-danger">
-                        Delete
-                      </button>
-                    </div>
+            <div class="modal fade" id="myModal3" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 className="modal-title">Are you sure?</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                      &times;
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p align="left">Do you want delete Delivary Token.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                      Delete
+                    </button>
                   </div>
                 </div>
               </div>
-            
+            </div>
           </div>
         </div>
 
@@ -239,7 +250,7 @@ function DelivaryTokenDetails() {
             </a>
             <Link to="/UpdateDelivaryToken">
               <FontAwesomeIcon icon={faEdit} color="black" className="mr-2" />
-              </Link>
+            </Link>
             <a href="#">
               <FontAwesomeIcon
                 icon={faTrash}
@@ -247,36 +258,36 @@ function DelivaryTokenDetails() {
                 className="mr-2"
                 data-toggle="modal"
                 data-target="#myModal4"
-              /></a>
+              />
+            </a>
 
-              <div class="modal fade" id="myModal4" role="dialog">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 className="modal-title">Are you sure?</h4>
-                      <button type="button" class="close" data-dismiss="modal">
-                        &times;
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p align="left">Do you want delete Delivary Token.</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-default"
-                        data-dismiss="modal"
-                      >
-                        Close
-                      </button>
-                      <button type="button" class="btn btn-danger">
-                        Delete
-                      </button>
-                    </div>
+            <div class="modal fade" id="myModal4" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 className="modal-title">Are you sure?</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                      &times;
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p align="left">Do you want delete Delivary Token.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                      Delete
+                    </button>
                   </div>
                 </div>
               </div>
-            
+            </div>
           </div>
         </div>
       </div>
@@ -284,4 +295,14 @@ function DelivaryTokenDetails() {
   );
 }
 
-export default DelivaryTokenDetails;
+const mapStateToProps = (state) => {
+  return {
+    deliveryTokenList: state.deliveryToken.list,
+  };
+};
+
+const mapActionToProps = {
+  fetchAllToken: action.fetchAll,
+};
+
+export default connect(mapStateToProps, mapActionToProps)(DelivaryTokenDetails);
