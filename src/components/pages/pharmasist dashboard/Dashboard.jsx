@@ -71,7 +71,7 @@ function Dashboard() {
                 </Link>
               </div>
               <div className="row-sm mb-4">
-                <Link>
+                <Link to="/Report">
                   <button
                     className="btn btn-outline-success"
                     onClick="location.replace('#')"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HeaderBar from "./components/HeaderBar";
 import Dashboard from "./components/pages/pharmasist dashboard/Dashboard";
@@ -7,40 +7,46 @@ import DelivaryTokenDetails from "./components/pages/DelivaryTokenDetails/Deliva
 import UpdateDelivaryToken from "./components/pages/UpdateDelivaryToken/UpdateDelivaryToken";
 import Footer from "./components/Footer";
 import Login from "./components/pages/Login/Login";
-import {store} from "./components/pages/action/store"
-import {Provider} from "react-redux"
+import Tokens from "./components/pages/Report/Servicers/TokenReport"
 
-function App() {
-  return (
-    <div>
-      
-      <BrowserRouter>
-        <HeaderBar />
-        
-        <Switch>
-          <Route path="/CreateDeilivaryToken">
-            <CreateDeilivaryToken />
-          </Route>
-          <Route path="/DelivaryTokenDetails">
-          <Provider store={store}><DelivaryTokenDetails /></Provider>
-            
-          </Route>
-          <Route path="/UpdateDelivaryToken">
-           
-            <UpdateDelivaryToken />
-          </Route>
-          <Route path="/DashBoard">
-            <Dashboard />
-          </Route>
-          <Route path="/">
-            <Login />
-          </Route>
-        </Switch>
-        <Footer />
-        
-      </BrowserRouter>
-    </div>
-  );
+import { Provider } from "react-redux";
+import {axios} from "axios";
+
+class App extends Component {
+  
+  render() {
+    return (
+      <div>
+        <BrowserRouter>
+          <HeaderBar />
+
+          <Switch>
+            <Route path="/CreateDeilivaryToken">
+              <CreateDeilivaryToken />
+            </Route>
+            <Route path="/DelivaryTokenDetails">
+              
+                <DelivaryTokenDetails />
+              
+            </Route>
+            <Route path="/UpdateDelivaryToken">
+              <UpdateDelivaryToken />
+            </Route>
+            <Route path="/DashBoard">
+              <Dashboard />
+            </Route>
+            <Route path="/Report">
+              <Tokens />
+            </Route>
+            <Route path="/">
+              <Login />
+            </Route>
+          </Switch>
+          <Footer />
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
 
 export default App;

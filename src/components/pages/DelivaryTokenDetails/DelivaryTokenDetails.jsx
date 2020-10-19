@@ -1,8 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
 import { useState, useEffect } from "react";
-import { store } from "../action/store";
 import { connect } from "react-redux";
-import * as action from "../action/deliveryToken";
 // import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
@@ -10,299 +8,190 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import UpdateDelivaryToken from "C:/Users/vibus/OneDrive/Desktop/ITPproject/interface/src/components/pages/UpdateDelivaryToken/UpdateDelivaryToken";
 import { Link } from "react-router-dom";
+import { axios } from "axios";
 
+class DelivaryTokenDetails extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      tokens: [],
+    };
+  }
 
+  state = {
+    deletedId: 0,
+  };
+  onChange(e) {
+    this.setState({ deletedId: e });
+  }
+  delete() {
+    debugger;
+    fetch("http://localhost:5000/api/Tokens/" + this.state.deletedId, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+      this.getTokens();
+    });
+  }
+  getTokens = (e) => {
+    fetch("http://localhost:5000/api/Tokens", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            tokens: result,
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  };
+  componentDidMount() {
+    this.getTokens();
+  }
+  // submitEdit = (e) => {
+  //   e.preventDefault();
+  //   fetch("http://localhost:5000/api/TokenDetails", {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       token_Number: this.state.token_Number,
+  //       order_ID: this.state.order_ID,
+  //       customer_Name: this.state.customer_Name,
+  //       tel_No: this.state.tel_No,
+  //       address: this.state.address,
+  //       description: this.state.description,
+  //       pay_Method: this.state.pay_Method,
+  //     }),
+  //   }).catch((err) => console.log(err));
+  // };
 
-const DelivaryTokenDetails=(props) =>{
-  useEffect(() => {
-    this.props.fetchAllToken();
-  }, []);
-  return (
-    <div>
-      <h2 className="mt-5" align="center">
-        Delivary Token Details
-      </h2>
-      <div className="row">
-        <div className="col-sm border border-success rounded m-5">
-          <div align="center">
-            <label for="tokenNo">001{/*set token variable*/}</label>
-            <div>
-              <label for="orderStatus">Processing</label>
-            </div>
-            <hr />
-          </div>
-          <div>
-            <label for="OrderNo">Order Number : 001</label>
-          </div>
-          <div>
-            <label for="cusName">Customer Name : Wishva Perera</label>
-          </div>
-          <div>
-            <label fro="address">Address : 519/C, Aggona, Mulleriyawa</label>
-          </div>
-          <div>
-            <label for="cusTel">Mobile Number : 0771730317</label>
-          </div>
-          <div align="right">
-            <a href="#">
-              <FontAwesomeIcon icon={faEye} color="black" className="mr-2" />
-            </a>
-            <Link to="/UpdateDelivaryToken">
-              <FontAwesomeIcon icon={faEdit} color="black" className="mr-2" />
-            </Link>
-            <a href="#">
-              <FontAwesomeIcon
-                icon={faTrash}
-                color="black"
-                className="mr-2"
-                data-toggle="modal"
-                data-target="#myModal1"
-              />
-            </a>
+  render() {
+    const { error, isLoaded, tokens } = this.state;
+    return (
+      <div>
+        <h2 className="mt-5" align="center">
+          Delivary Token Details
+        </h2>
+        <div className="row">
+          {tokens.map((token) => (
+            <div className="col-sm-3 border border-success rounded m-5">
+              <div align="center">
+                <label for="tokenNo">{token.id}</label>
+                <div>
+                  <label for="orderStatus">{token.stringStatus}</label>
+                </div>
+                <hr />
+              </div>
+              <div>
+                <label for="OrderNo">Order Number : {token.orderID}</label>
+              </div>
+              <div>
+                <label for="cusName">
+                  Customer Name : {token.customer.name}
+                </label>
+              </div>
+              <div>
+                <label fro="address">Address : {token.customer.address}</label>
+              </div>
+              <div>
+                <label for="cusTel">
+                  Mobile Number : {token.customer.telephone}
+                </label>
+              </div>
+              <div align="right">
+                <a href="#">
+                  <FontAwesomeIcon
+                    icon={faEye}
+                    color="black"
+                    className="mr-2"
+                  />
+                </a>
+                <Link to="/UpdateDelivaryToken">
+                  <FontAwesomeIcon
+                    icon={faEdit}
+                    color="black"
+                    className="mr-2"
+                  />
+                </Link>
+                <a href="#" onClick={this.onChange.bind(this, token.id)}>
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    color="black"
+                    className="mr-2"
+                    data-toggle="modal"
+                    data-target="#myModal1"
+                  />
+                </a>
 
-            <div class="modal fade" id="myModal1" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 className="modal-title">Are you sure?</h4>
-                    <button type="button" class="close" data-dismiss="modal">
-                      &times;
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <p align="left">Do you want delete Delivary Token.</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-default"
-                      data-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                      Delete
-                    </button>
+                <div class="modal fade" id="myModal1" role="dialog">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 className="modal-title">Are you sure?</h4>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                        >
+                          &times;
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p align="left">Do you want delete Delivary Token.</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-default"
+                          data-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-danger"
+                          onClick={this.delete.bind(this)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="col-sm border border-success rounded m-5">
-          <div align="center">
-            <label for="tokenNo">002{/*set token variable*/}</label>
-            <div>
-              <label for="orderStatus">Processing</label>
-            </div>
-            <hr />
-          </div>
-          <div>
-            <label for="OrderNo">Order Number : 002</label>
-          </div>
-          <div>
-            <label for="cusName">Customer Name : Wishva Perera</label>
-          </div>
-          <div>
-            <label fro="address">Address : 519/C, Aggona, Mulleriyawa</label>
-          </div>
-          <div>
-            <label for="cusTel">Mobile Number : 0771730317</label>
-          </div>
-          <div align="right">
-            <a href="#">
-              <FontAwesomeIcon icon={faEye} color="black" className="mr-2" />
-            </a>
-            <Link to="/UpdateDelivaryToken">
-              <FontAwesomeIcon icon={faEdit} color="black" className="mr-2" />
-            </Link>
-            <a href="#">
-              <FontAwesomeIcon
-                icon={faTrash}
-                color="black"
-                className="mr-2"
-                data-toggle="modal"
-                data-target="#myModal2"
-              />
-            </a>
-
-            <div class="modal fade" id="myModal2" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 className="modal-title">Are you sure?</h4>
-                    <button type="button" class="close" data-dismiss="modal">
-                      &times;
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <p align="left">Do you want delete Delivary Token.</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-default"
-                      data-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-sm border border-success rounded m-5">
-          <div align="center">
-            <label for="tokenNo">003{/*set token variable*/}</label>
-            <div>
-              <label for="orderStatus">Processing</label>
-            </div>
-            <hr />
-          </div>
-          <div>
-            <label for="OrderNo">Order Number : 003</label>
-          </div>
-          <div>
-            <label for="cusName">Customer Name : Wishva Perera</label>
-          </div>
-          <div>
-            <label fro="address">Address : 519/C, Aggona, Mulleriyawa</label>
-          </div>
-          <div>
-            <label for="cusTel">Mobile Number : 0771730317</label>
-          </div>
-          <div align="right">
-            <a href="#">
-              <FontAwesomeIcon icon={faEye} color="black" className="mr-2" />
-            </a>
-            <Link to="/UpdateDelivaryToken">
-              <FontAwesomeIcon icon={faEdit} color="black" className="mr-2" />
-            </Link>
-            <a href="#">
-              <FontAwesomeIcon
-                icon={faTrash}
-                color="black"
-                className="mr-2"
-                data-toggle="modal"
-                data-target="#myModal3"
-              />
-            </a>
-
-            <div class="modal fade" id="myModal3" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 className="modal-title">Are you sure?</h4>
-                    <button type="button" class="close" data-dismiss="modal">
-                      &times;
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <p align="left">Do you want delete Delivary Token.</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-default"
-                      data-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-sm border border-success rounded m-5">
-          <div align="center">
-            <label for="tokenNo">004{/*set token variable*/}</label>
-            <div>
-              <label for="orderStatus">Processing</label>
-            </div>
-            <hr />
-          </div>
-          <div>
-            <label for="OrderNo">Order Number : 004</label>
-          </div>
-          <div>
-            <label for="cusName">Customer Name : Wishva Perera</label>
-          </div>
-          <div>
-            <label fro="address">Address : 519/C, Aggona, Mulleriyawa</label>
-          </div>
-          <div>
-            <label for="cusTel">Mobile Number : 0771730317</label>
-          </div>
-          <div align="right">
-            <a href="#">
-              <FontAwesomeIcon icon={faEye} color="black" className="mr-2" />
-            </a>
-            <Link to="/UpdateDelivaryToken">
-              <FontAwesomeIcon icon={faEdit} color="black" className="mr-2" />
-            </Link>
-            <a href="#">
-              <FontAwesomeIcon
-                icon={faTrash}
-                color="black"
-                className="mr-2"
-                data-toggle="modal"
-                data-target="#myModal4"
-              />
-            </a>
-
-            <div class="modal fade" id="myModal4" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 className="modal-title">Are you sure?</h4>
-                    <button type="button" class="close" data-dismiss="modal">
-                      &times;
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <p align="left">Do you want delete Delivary Token.</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-default"
-                      data-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    deliveryTokenList: state.deliveryToken.list,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     deliveryTokenList: state.deliveryToken.list,
+//   };
+// };
 
-const mapActionToProps = {
-  fetchAllToken: action.fetchAll,
-};
+// const mapActionToProps = {
+//   fetchAllToken: action.fetchAll,
+// };connect(mapStateToProps, mapActionToProps)
 
-export default connect(mapStateToProps, mapActionToProps)(DelivaryTokenDetails);
+export default DelivaryTokenDetails;

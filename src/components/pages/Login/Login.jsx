@@ -2,7 +2,7 @@ import React from "react";
 import "./Login.css";
 
 import { Link } from "react-router-dom";
-import Footer from "../../Footer";
+
 
 function Login() {
 
