@@ -34,21 +34,17 @@ const Tickets = () => {
     getAllTokens();
   }, []);
 
-//   const reportTokens = tokens.filter((token) => token.status === "0");
+  //   const reportTokens = tokens.filter((token) => token.status === "0");
 
   return (
-    <div>
-      <div className="container mb-4 mt-4 p-3">
-        <div className="row">
-          <button
-            className="btn btn-primary"
-            onClick={() => generatePDF(tokens)}
-          >
-            Generate monthly report
-          </button>
-        </div>
+    <div align="center">
+      <div className="container mb-5 mt-4 p-3">
+        <h3>Monthly Delivery Token Report</h3>
       </div>
       <TicketsComponent tokens={tokens} />
+      <button className="btn btn-outline-success m-5" align="center" onClick={() => generatePDF(tokens)}>
+        Generate monthly report
+      </button>
     </div>
   );
 };

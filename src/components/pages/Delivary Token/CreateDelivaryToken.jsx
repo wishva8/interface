@@ -15,7 +15,6 @@ class CreateDeilivaryToken extends React.Component {
     this.setState({ [e.target.name]: e.target.checked });
   };
   submitNew = (e) => {
-    debugger;
     e.preventDefault();
     fetch("http://localhost:5000/api/Tokens", {
       method: "post",
@@ -80,7 +79,7 @@ class CreateDeilivaryToken extends React.Component {
               <div className="row mb-3">
                 Order Number : {order.id}
                 <br />
-                Customer Name : {order.customer.name}
+                Customer Name : {order.customer.firstName} {order.customer.lastName}
                 <br />
                 Mobile Name : {order.customer.telephone}
                 <br />

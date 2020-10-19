@@ -104,7 +104,7 @@ class DelivaryTokenDetails extends React.Component {
               </div>
               <div>
                 <label for="cusName">
-                  Customer Name : {token.customer.name}
+                  Customer Name : {token.customer.firstName} {token.customer.lastName}
                 </label>
               </div>
               <div>

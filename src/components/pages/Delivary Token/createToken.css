@@ -59,5 +59,9 @@
   }
 
   .column{
-      height: 660px;
+      height: 500px;
   }
+
+  .column2{
+    height: 660px;
+}
