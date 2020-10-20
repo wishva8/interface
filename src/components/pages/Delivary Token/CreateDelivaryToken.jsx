@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./createToken.css";
 
 class CreateDeilivaryToken extends React.Component {
@@ -90,7 +91,7 @@ class CreateDeilivaryToken extends React.Component {
           </div>
           <div className="border border-success col-sm rounded m-5 column">
             <h5 align="center" className="m-2 mb-4">
-              Create Delivaly Token
+              Create Delivery Token
             </h5>
             <form onSubmit={this.submitNew}>
               <div class="form-group row">
@@ -171,10 +172,11 @@ class CreateDeilivaryToken extends React.Component {
               <br />
               <div class="form-group row">
                 <div className="">
-                  <button className="btn btn-outline-success">Cancel</button>
+                  <Link to="DashBoard">
+                  <button className="btn btn-outline-success">Cancel</button></Link>
                 </div>
                 <div className="">
-                  <input type="submit" className="btn btn-success ml-2" />
+                  <input type="submit" className="btn btn-success ml-2" value="Save"/>
                 </div>
               </div>
             </form>

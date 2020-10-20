@@ -26,8 +26,11 @@ class DelivaryTokenDetails extends React.Component {
   onChange(e) {
     this.setState({ deletedId: e });
   }
+  onEdit(e) {
+    localStorage.setItem("token", e);
+  }
+
   delete() {
-    debugger;
     fetch("http://localhost:5000/api/Tokens/" + this.state.deletedId, {
       method: "DELETE",
       headers: {
@@ -37,6 +40,10 @@ class DelivaryTokenDetails extends React.Component {
       this.getTokens();
     });
   }
+
+  // WriteId() {
+  //   localStorage.setItem("token", res.id);
+  // }
   getTokens = (e) => {
     fetch("http://localhost:5000/api/Tokens", {
       method: "GET",
@@ -104,7 +111,8 @@ class DelivaryTokenDetails extends React.Component {
               </div>
               <div>
                 <label for="cusName">
-                  Customer Name : {token.customer.firstName} {token.customer.lastName}
+                  Customer Name : {token.customer.firstName}{" "}
+                  {token.customer.lastName}
                 </label>
               </div>
               <div>
@@ -123,12 +131,14 @@ class DelivaryTokenDetails extends React.Component {
                     className="mr-2"
                   />
                 </a>
-                <Link to="/UpdateDelivaryToken">
+                <Link to="/UpdateDelivaryToken" >
+                <a href="#" onClick={this.onEdit.bind(this, token.id)}>
                   <FontAwesomeIcon
                     icon={faEdit}
                     color="black"
                     className="mr-2"
                   />
+                </a>
                 </Link>
                 <a href="#" onClick={this.onChange.bind(this, token.id)}>
                   <FontAwesomeIcon

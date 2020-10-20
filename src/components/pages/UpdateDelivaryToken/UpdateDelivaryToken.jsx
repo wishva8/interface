@@ -8,6 +8,7 @@ class UpdateDelivaryToken extends React.Component {
     description: "",
     urgent: false,
     payMethod: 0,
+    status:0
   };
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -17,7 +18,9 @@ class UpdateDelivaryToken extends React.Component {
   };
   submitEdit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/api/Tokens", {
+    let tokenId = localStorage.getItem("token");
+
+    fetch("http://localhost:5000/api/Tokens/" + tokenId, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -27,6 +30,7 @@ class UpdateDelivaryToken extends React.Component {
         urgent: this.state.urgent,
         description: this.state.description,
         payMethod: Number(this.state.payMethod),
+        status:Number(this.state.status)
       }),
     })
       .then((res) => res.json())
@@ -39,10 +43,12 @@ class UpdateDelivaryToken extends React.Component {
       error: null,
       isLoaded: false,
       tokens: [],
+      selectedToken: null,
+      orders: [],
     };
   }
-  componentDidMount() {
-    fetch("http://localhost:5000/api/Tokens", {
+  getOrder = (e) => {
+    fetch("http://localhost:5000/api/Orders", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +59,7 @@ class UpdateDelivaryToken extends React.Component {
         (result) => {
           this.setState({
             isLoaded: true,
-            tokens: result,
+            orders: result,
           });
         },
         (error) => {
@@ -63,9 +69,38 @@ class UpdateDelivaryToken extends React.Component {
           });
         }
       );
+  };
+  componentDidMount() {
+    let tokenId = localStorage.getItem("token");
+    fetch("http://localhost:5000/api/Tokens", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          let tok = result.filter((f) => f.id == tokenId)[0];
+          this.setState({
+            isLoaded: true,
+            tokens: result,
+            selectedToken: tok,
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      )
+      .then(() => {
+        this.getOrder();
+      });
   }
   render() {
-    const { error, isLoaded, tokens } = this.state;
+    const { error, isLoaded, tokens, selectedToken, orders } = this.state;
     return (
       <div>
         <h3 align="center" className="mt-5">
@@ -82,7 +117,8 @@ class UpdateDelivaryToken extends React.Component {
                 <br />
                 Order Number : {token.orderID}
                 <br />
-                Customer Name : {token.customer.firstName} {token.customer.lastName}
+                Customer Name : {token.customer.firstName}{" "}
+                {token.customer.lastName}
                 <br />
                 Mobile Name : {token.customer.telephone}
                 <br />
@@ -107,10 +143,10 @@ class UpdateDelivaryToken extends React.Component {
                 <div class="col-sm">
                   <input
                     type="text"
-                    readonly
+                    readOnly
                     class="form-control-plaintext"
                     id="staticToken"
-                    value="001"
+                    value={selectedToken === null ? "" : selectedToken.id}
                   />
                 </div>
               </div>
@@ -119,12 +155,35 @@ class UpdateDelivaryToken extends React.Component {
                   Order Number :
                 </label>
                 <div class="col-sm">
-                  <select name="Orders" className="col-" id="Orders">
-                    <option value="none">001</option>
-                    <option value="option1">option1</option>
-                    <option value="option2">option2</option>
-                    <option value="option3">option3</option>
-                    <option value="option4">option4</option>
+                  <select
+                    className="col-"
+                    name="orderID"
+                    onChange={this.onChange}
+                    value={
+                      this.state.orderID === null ? "" : this.state.orderID
+                    }
+                  >
+                    {orders.map((order) => (
+                      <option value={order.id}>{order.id}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="staticPaytype" class="col-sm col-form-label">
+                  status :
+                </label>
+                <div class="col-sm">
+                  <select
+                    className="col-"
+                    name="payMethod"
+                    onChange={this.onChange}
+                    value={selectedToken === null ? "" : selectedToken.status}
+                  >
+                    <option value="0">Processing</option>
+                    <option value="1">Ready</option>
+                    <option value="2">Completed</option>
                   </select>
                 </div>
               </div>
@@ -147,10 +206,15 @@ class UpdateDelivaryToken extends React.Component {
                 </label>
                 <div class="col-sm">
                   <input
+                    readOnly
                     type="text"
                     class="form-control"
                     id="CusName"
-                    value="Wishva Perera"
+                    value={
+                      selectedToken === null
+                        ? ""
+                        : selectedToken.customer.firstName
+                    }
                   />
                 </div>
               </div>
@@ -161,10 +225,15 @@ class UpdateDelivaryToken extends React.Component {
                 </label>
                 <div class="col-sm">
                   <input
+                    readOnly
                     type="tel"
                     class="form-control"
                     id="tel"
-                    value="0771234567"
+                    value={
+                      selectedToken === null
+                        ? ""
+                        : selectedToken.customer.telephone
+                    }
                   />
                 </div>
               </div>
@@ -174,9 +243,16 @@ class UpdateDelivaryToken extends React.Component {
                   Address :
                 </label>
                 <div class="col-sm">
-                  <textarea class="form-control" id="address">
-                    225/B, Malabe, Colombo
-                  </textarea>
+                  <textarea
+                    readOnly
+                    class="form-control"
+                    id="address"
+                    value={
+                      selectedToken === null
+                        ? ""
+                        : selectedToken.customer.address
+                    }
+                  ></textarea>
                 </div>
               </div>
 
@@ -185,9 +261,14 @@ class UpdateDelivaryToken extends React.Component {
                   Item Description :
                 </label>
                 <div class="col-sm">
-                  <textarea class="form-control" id="itemDesc">
-                    Keep dry
-                  </textarea>
+                  <textarea
+                    class="form-control"
+                    id="itemDesc"
+                    onChange={this.onChange}
+                    value={
+                      selectedToken === null ? "" : selectedToken.description
+                    }
+                  ></textarea>
                 </div>
               </div>
 
@@ -198,10 +279,14 @@ class UpdateDelivaryToken extends React.Component {
                 <div class="col-sm">
                   <input
                     type="text"
-                    readonly
                     class="form-control-plaintext"
                     id="paytype"
-                    value="cash on delivary"
+                    onChange={this.onChange}
+                    value={
+                      selectedToken === null
+                        ? ""
+                        : selectedToken.stringPayMethod
+                    }
                   />
                 </div>
               </div>

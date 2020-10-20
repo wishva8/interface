@@ -61,12 +61,12 @@ function Dashboard() {
                 </Link>
               </div>
               <div className="row-sm mb-4">
-                <Link>
+                <Link to="/Prescription">
                   <button
                     className="btn btn-outline-success"
                     onClick="location.replace('#')"
                   >
-                    Create Order
+                    Prescriptions
                   </button>
                 </Link>
               </div>
@@ -76,7 +76,7 @@ function Dashboard() {
                     className="btn btn-outline-success"
                     onClick="location.replace('#')"
                   >
-                    Genarate Customer Progress Report
+                    Generate Customer Progress Report
                   </button>
                 </Link>
               </div>
