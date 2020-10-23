@@ -41,9 +41,7 @@ class DelivaryTokenDetails extends React.Component {
     });
   }
 
-  // WriteId() {
-  //   localStorage.setItem("token", res.id);
-  // }
+ 
   getTokens = (e) => {
     fetch("http://localhost:5000/api/Tokens", {
       method: "GET",
@@ -70,24 +68,7 @@ class DelivaryTokenDetails extends React.Component {
   componentDidMount() {
     this.getTokens();
   }
-  // submitEdit = (e) => {
-  //   e.preventDefault();
-  //   fetch("http://localhost:5000/api/TokenDetails", {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       token_Number: this.state.token_Number,
-  //       order_ID: this.state.order_ID,
-  //       customer_Name: this.state.customer_Name,
-  //       tel_No: this.state.tel_No,
-  //       address: this.state.address,
-  //       description: this.state.description,
-  //       pay_Method: this.state.pay_Method,
-  //     }),
-  //   }).catch((err) => console.log(err));
-  // };
+
 
   render() {
     const { error, isLoaded, tokens } = this.state;

@@ -9,6 +9,7 @@ class Prescription extends React.Component {
       prescriptions: [],
     };
   }
+  //get prescription details
   componentDidMount() {
     fetch("http://localhost:5000/api/Customers/Prescription", {
       method: "GET",

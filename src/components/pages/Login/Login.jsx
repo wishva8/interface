@@ -14,6 +14,7 @@ class Login extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  //login submit
   submitLogin = (e) => {
     e.preventDefault();
     fetch("http://localhost:5000/api/Customers/Login", {

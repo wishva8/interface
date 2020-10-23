@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // import "./createToken.css";
 
@@ -8,7 +9,7 @@ class UpdateDelivaryToken extends React.Component {
     description: "",
     urgent: false,
     payMethod: 0,
-    status:0
+    status: 0,
   };
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -16,21 +17,25 @@ class UpdateDelivaryToken extends React.Component {
   onCheckboxValueChange = (e) => {
     this.setState({ [e.target.name]: e.target.checked });
   };
+
+  //send data to update
   submitEdit = (e) => {
     e.preventDefault();
-    let tokenId = localStorage.getItem("token");
 
-    fetch("http://localhost:5000/api/Tokens/" + tokenId, {
+    let tokenId = localStorage.getItem("token");
+    debugger;
+    fetch("http://localhost:5000/api/Tokens", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        id: Number(tokenId),
         orderID: Number(this.state.orderID),
         urgent: this.state.urgent,
         description: this.state.description,
-        payMethod: Number(this.state.payMethod),
-        status:Number(this.state.status)
+        payMethod: Number(this.state.selectedToken.payMethod),
+        status: Number(this.state.status),
       }),
     })
       .then((res) => res.json())
@@ -47,6 +52,7 @@ class UpdateDelivaryToken extends React.Component {
       orders: [],
     };
   }
+  //get order ids
   getOrder = (e) => {
     fetch("http://localhost:5000/api/Orders", {
       method: "GET",
@@ -70,6 +76,7 @@ class UpdateDelivaryToken extends React.Component {
         }
       );
   };
+  //get token details
   componentDidMount() {
     let tokenId = localStorage.getItem("token");
     fetch("http://localhost:5000/api/Tokens", {
@@ -82,10 +89,14 @@ class UpdateDelivaryToken extends React.Component {
       .then(
         (result) => {
           let tok = result.filter((f) => f.id == tokenId)[0];
+
           this.setState({
             isLoaded: true,
             tokens: result,
             selectedToken: tok,
+            description: tok.description,
+            status: tok.status,
+            urgent: tok.urgent,
           });
         },
         (error) => {
@@ -100,7 +111,15 @@ class UpdateDelivaryToken extends React.Component {
       });
   }
   render() {
-    const { error, isLoaded, tokens, selectedToken, orders } = this.state;
+    const {
+      error,
+      isLoaded,
+      tokens,
+      selectedToken,
+      orders,
+      description,
+      status,
+    } = this.state;
     return (
       <div>
         <h3 align="center" className="mt-5">
@@ -127,6 +146,8 @@ class UpdateDelivaryToken extends React.Component {
                 Description : {token.description}
                 <br />
                 Payment Method : {token.stringPayMethod}
+                <br />
+                Urgent : {token.stringUrgent}
                 <br />
               </div>
             ))}
@@ -177,9 +198,9 @@ class UpdateDelivaryToken extends React.Component {
                 <div class="col-sm">
                   <select
                     className="col-"
-                    name="payMethod"
+                    name="status"
                     onChange={this.onChange}
-                    value={selectedToken === null ? "" : selectedToken.status}
+                    value={this.state.status === null ? "" : this.state.status}
                   >
                     <option value="0">Processing</option>
                     <option value="1">Ready</option>
@@ -194,7 +215,12 @@ class UpdateDelivaryToken extends React.Component {
                 </label>
                 <div class="col-sm">
                   <label class="switch">
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      onChange={this.onCheckboxValueChange}
+                      value={this.state.urgent}
+                      name="urgent"
+                    />
                     <span class="slider round"></span>
                   </label>
                 </div>
@@ -263,10 +289,12 @@ class UpdateDelivaryToken extends React.Component {
                 <div class="col-sm">
                   <textarea
                     class="form-control"
-                    id="itemDesc"
+                    name="description"
                     onChange={this.onChange}
                     value={
-                      selectedToken === null ? "" : selectedToken.description
+                      this.state.description === null
+                        ? ""
+                        : this.state.description
                     }
                   ></textarea>
                 </div>
@@ -280,8 +308,7 @@ class UpdateDelivaryToken extends React.Component {
                   <input
                     type="text"
                     class="form-control-plaintext"
-                    id="paytype"
-                    onChange={this.onChange}
+                    name="payMethod"
                     value={
                       selectedToken === null
                         ? ""
@@ -294,13 +321,15 @@ class UpdateDelivaryToken extends React.Component {
               <br />
               <div class="form-group row">
                 <div className="">
-                  <button className="btn btn-outline-success">Cancel</button>
+                  <Link to="/DashBoard">
+                    <button className="btn btn-outline-success">Back</button>
+                  </Link>
                 </div>
                 <div className="">
                   <input
                     type="submit"
                     className="btn btn-success ml-4"
-                    value="Save Changers"
+                    value="Save Changes"
                   />
                 </div>
               </div>
